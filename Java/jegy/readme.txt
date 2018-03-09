@@ -1,0 +1,13 @@
+zítsünk Jegy osztályt, mely egy adott (távolsági) tömegközlekedési eszközre egyszeri utazásra jogosít fel. Egy jegyről eltároljuk: hány kilométerre szól (pl. 15 km), célállomás (pl. Szeged), érvényessége (pl. true), mely jelöli, hogy a jegy felhasználható-e még, valamint kedvezmény mértéke (pl. 0 – ilyenkor teljes árat kell fizetni (0%), de ha pl. 50, akkor 50%-os levonás az árból). Az adattagokat ne lehessen másik osztályból elérni. Az osztály kerüljön a jegy csomagba.
+A Jegy osztálynak legyen egy statikus közös jegyár adattagja (1 Ft/km) ami egységesíti, hogy 1 kilométerenként mennyit kell fizetni. Ez az érték legyen 25.
+A fenti adattagok rendelkezzenek beállító és lekérdező függvényekkel. Az osztályhoz tartozzon konstruktor, mely várja a célállomást, „hány km-re szól" és kedvezmény mértékét paraméterként. Ezeket értelemszerűen állítsa be, valamit a jegy legyen érvényes alapértelmezetten.
+Készítsünk arKiszamit metódust, mely visszaadja az aktuális jegy konkrét árát. Vegyük figyelembe a kilométerenkénti díjat és a kedvezményt! (15 km és 50% kedvezmény esetén 188 Ft, mivel 15 * (25 – 25*0.5) értékét felkerekítettük – Math.round())
+Készítsünk, felhasznál metódust melynek hatására a jegy érvényessége hamisra vált, mivel csak egyszer használható.
+Az osztályhoz készíts toString metódust, mely kiírja a jegy adatait a következő formában:
+[Cél: Szeged, Mars tér; Kedvezmény: 50%; Távolság: 15 km; Jegyár: 188 Ft]
+2. Készítsük el a ReturnJegy osztályt, mely az előző Jegy osztály kiterjesztése azzal, hogy oda-vissza utazásra jogosít fel. Szintén helyezzük az osztályt a jegy csomagba.
+Vegyük fel új adattagként egy használatok száma adattagot (pl. 1, 2 vagy 0). Ennek értéke alapból 0. Rendelkezzen ez is getter és setter metódusokkal.
+A konstruktor ugyanazokat a paramétereket várja, mint a Jegy osztály esetében. Ezek gyors beállításához hívjuk az ősosztály konstruktorát. Ne feledkezzünk meg ez új adattag inicializálásáról.
+Írjuk felül a felhasznál metódust annyival, hogy csak akkor változzon érvénytelenné az állapota, ha 2x felhasználtuk. (a használatok száma adattagban rögzíthetjük a szükséges értékeket)
+Definiáljuk felül az arKiszamit metódust is, hiszen itt pont az eredeti érték kétszeresét kell kérnünk. (egyből felszámítjuk az oda- és vissza utat is)
+A toString metódus felülírása esetén a korábban kiírt szöveg mellé jelezzük: „return – jegy"
