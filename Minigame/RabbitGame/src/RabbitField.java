@@ -40,6 +40,12 @@ public class RabbitField extends JFrame {
         button1.setVisible(true);
         frame.add(button1);
 
+        info.setBounds(800,0,200,100);
+        info.setFont(new Font("Serif",Font.PLAIN, 15));
+        info.setVisible(true);
+        info.setForeground(Color.yellow);
+        frame.add(info);
+
         JLabel info2 = new JLabel();
         info2.setBounds(800,110,200,100);
         info2.setFont(new Font("Serif",Font.PLAIN, 20));
@@ -63,9 +69,6 @@ public class RabbitField extends JFrame {
         frame.add(panel2);
 
 
-
-        info.setForeground(Color.white);
-        panel.add(info);
 
 
         for (int i = 0; i < 8; i++) {
@@ -208,34 +211,34 @@ frame.repaint();
 
 
     public void inforeader () {
-        String everything="";
-
-        StringBuilder sb = new StringBuilder();
-        BufferedReader br = null;
+        String text = "";
         try {
-            br = new BufferedReader(new FileReader("info.txt"));
-        } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
+            File fileDir = new File("info.txt");
+
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(
+                            new FileInputStream(fileDir), "UTF8"));
+
+            String str;
+
+            while ((str = in.readLine()) != null) {
+                text+=str.toString();
+            }
+
+            in.close();
         }
-        try {
-            String line = br.readLine();
-            while (line != null) {
-                sb.append(line);
-                sb.append(System.lineSeparator());
-                line = br.readLine();
-            }
-            everything = sb.toString();
-        } catch (IOException a) {
-            a.printStackTrace();
-        } finally {
-            try {
-                br.close();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
+        catch (UnsupportedEncodingException e)
+        {
+        }
+        catch (IOException e)
+        {
+        }
+        catch (Exception e)
+        {
         }
 
-        JFrame infoframe = new JFrame();
+
+    JFrame infoframe = new JFrame();
 
         JLabel gameinfo = new JLabel();
         gameinfo.setBounds(0,0,700,700);
@@ -245,7 +248,7 @@ frame.repaint();
         gameinfo.setText("");
         infoframe.add(gameinfo);
 
-        gameinfo.setText(everything);
+        gameinfo.setText(text);
 
         infoframe.setResizable(false);
         infoframe.setSize(700, 700);

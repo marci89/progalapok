@@ -38,7 +38,7 @@ public class Food extends JButton{
 
             this.addMouseListener(new MouseAdapter() {
                 public void mouseEntered (MouseEvent e) {
-                    RabbitField.info.setText("<html>Fű: <br/> Nyulaid táplálék forrása</html> ");
+                    RabbitField.info.setText("<html>Répa: <br/> Nyulaid táplálék forrása</html> ");
                 }
             });
 
